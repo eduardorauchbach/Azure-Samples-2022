@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.32112.339
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Function.Clients", "Function.Clients\Function.Clients.csproj", "{EF775B0C-D32F-457F-9E2F-3F52D42BF2C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Functions.Clients", "Functions.Clients\Functions.Clients.csproj", "{EF775B0C-D32F-457F-9E2F-3F52D42BF2C2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RauchTech.Extensions.Logging", "RauchTech.Extensions.Logging\RauchTech.Extensions.Logging.csproj", "{523E52D1-68A6-4660-B325-D483830BBB15}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RauchTech.Extensions.Common", "RauchTech.Extensions.Common\RauchTech.Extensions.Common.csproj", "{4DE00ADA-3D9A-4220-8618-6E42DC8070AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Functions.Common", "Functions.Common\Functions.Common.csproj", "{8FBE6E3D-D4F7-4FCD-866F-834463EF29D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E682F0A5-C703-41E3-A2DA-39491515E550}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +28,10 @@ Global
 		{523E52D1-68A6-4660-B325-D483830BBB15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{523E52D1-68A6-4660-B325-D483830BBB15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{523E52D1-68A6-4660-B325-D483830BBB15}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4DE00ADA-3D9A-4220-8618-6E42DC8070AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4DE00ADA-3D9A-4220-8618-6E42DC8070AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4DE00ADA-3D9A-4220-8618-6E42DC8070AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4DE00ADA-3D9A-4220-8618-6E42DC8070AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FBE6E3D-D4F7-4FCD-866F-834463EF29D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FBE6E3D-D4F7-4FCD-866F-834463EF29D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FBE6E3D-D4F7-4FCD-866F-834463EF29D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FBE6E3D-D4F7-4FCD-866F-834463EF29D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

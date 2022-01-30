@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-using RauchTech.Extensions.Logging.Services.Azure;
-using System;
-using System.Collections.Generic;
+using RauchTech.Extensions.Logging.Services;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace RauchTech.Extensions.Logging
 {

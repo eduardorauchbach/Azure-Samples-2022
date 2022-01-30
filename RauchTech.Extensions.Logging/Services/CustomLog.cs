@@ -1,9 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using RauchTech.Extensions.Logging.Services.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 
@@ -268,9 +264,9 @@ namespace RauchTech.Extensions.Logging.Services
                 }
             }
 
-            public override bool TrySetMember(SetMemberBinder binder, object value)
+            public override bool TrySetMember(SetMemberBinder binder, object? value)
             {
-                if (_properties.ContainsKey(binder.Name))
+                if (_properties.ContainsKey(binder.Name) && value != null)
                 {
                     _properties[binder.Name] = value;
                     return true;
