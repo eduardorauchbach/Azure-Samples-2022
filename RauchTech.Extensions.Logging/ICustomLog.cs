@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using RauchTech.Extensions.Logging.Services.Azure;
+using RauchTech.Extensions.Logging.Services;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
