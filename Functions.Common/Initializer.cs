@@ -159,7 +159,7 @@ namespace Functions.Common
 
         private static void LoadLogsModule(ContainerBuilder builder)
         {
-            _ = builder.RegisterModule<CustomLogModule>();
+            _ = builder.RegisterModule<CustomLogsModule>();
         }
 
         #endregion

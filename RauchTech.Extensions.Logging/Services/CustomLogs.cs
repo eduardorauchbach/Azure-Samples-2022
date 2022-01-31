@@ -5,17 +5,17 @@ using System.Text.Json;
 
 namespace RauchTech.Extensions.Logging.Services
 {
-    public class CustomLog : CustomLogFactory, ICustomLog
+    public class CustomLogs : CustomLogFactory, ICustomLogs
     {
         public const string Begin = "Begin";
         public const string LineMarker = "Line";
         public const string Finish = "Finish";
 
-        public CustomLog(ILoggerFactory loggerFactory) : base(loggerFactory)
+        public CustomLogs(ILoggerFactory loggerFactory) : base(loggerFactory)
         {
             ILoggerFactory = loggerFactory;
         }
-        public CustomLog(CustomLogFactory customLogFactory) : base(customLogFactory.ILoggerFactory)
+        public CustomLogs(CustomLogFactory customLogFactory) : base(customLogFactory.ILoggerFactory)
         {
             IDs = customLogFactory.IDs;
             LogHistory = customLogFactory.LogHistory;
@@ -50,7 +50,7 @@ namespace RauchTech.Extensions.Logging.Services
         }
     }
 
-    public class CustomLogFactory : IDisposable, ICustomLogFactory
+    public class CustomLogFactory : IDisposable, ICustomLogsFactory
     {
         #region Log Memory
 
@@ -124,9 +124,9 @@ namespace RauchTech.Extensions.Logging.Services
         #endregion
 
 
-        public CustomLog CreateLogger<T>() where T : class
+        public CustomLogs CreateLogger<T>() where T : class
         {
-            CustomLog log = new(this);
+            CustomLogs log = new(this);
             log.ILogger = ILoggerFactory.CreateLogger<T>();
             return log;
         }
@@ -190,7 +190,7 @@ namespace RauchTech.Extensions.Logging.Services
 
         private void FinishLogging(LogItem logItem)
         {
-            logItem.Message ??= CustomLog.LineMarker;
+            logItem.Message ??= CustomLogs.LineMarker;
 
             List<(string, object)> temp = logItem.Args.ToList();
             foreach ((string, object) item in IDs.Keys)

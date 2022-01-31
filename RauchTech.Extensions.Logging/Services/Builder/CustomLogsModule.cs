@@ -6,7 +6,7 @@ using System;
 
 namespace Functions.Limits.Domain.Services
 {
-    public class CustomLogModule : Module
+    public class CustomLogsModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -19,8 +19,8 @@ namespace Functions.Limits.Domain.Services
             builder.RegisterMetadataRegistrationSources();
 
             _ = builder
-                .RegisterType<CustomLog>()
-                .As<ICustomLog>()
+                .RegisterType<CustomLogs>()
+                .As<ICustomLogs>()
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope()
                 .PropertiesAutowired();

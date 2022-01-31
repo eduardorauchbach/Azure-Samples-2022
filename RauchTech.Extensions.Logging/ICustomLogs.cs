@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace RauchTech.Extensions.Logging
 {
-    public interface ICustomLog
+    public interface ICustomLogs
     {
         /// <summary>
         /// Adds Scope Keys that will show in every log, from start to end of this scope
@@ -32,8 +32,8 @@ namespace RauchTech.Extensions.Logging
                         params ValueTuple<string, object>[] args);
     }
 
-    public interface ICustomLogFactory
+    public interface ICustomLogsFactory
     {
-        CustomLog CreateLogger<T>() where T : class;
+        CustomLogs CreateLogger<T>() where T : class;
     }
 }
