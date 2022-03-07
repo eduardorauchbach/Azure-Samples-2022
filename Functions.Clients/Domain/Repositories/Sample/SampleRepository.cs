@@ -1,12 +1,9 @@
-﻿using Functions.Clients.Domain.Repositories.Interfaces;
-using Functions.Clients.Domain.Models;
+﻿using Functions.Clients.Domain.Models;
+using Microsoft.Azure.Documents;
 using RauchTech.Extensions.Data.Cosmos;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Azure.Documents;
 
 namespace Functions.Clients.Domain.Repositories.Sample
 {

@@ -1,12 +1,10 @@
 ﻿using Autofac;
 using Autofac.Integration.Mef;
-using RauchTech.Extensions.Logging;
-using RauchTech.Extensions.Logging.Services;
 using System;
 
-namespace Functions.Limits.Domain.Services
+namespace Functions.Clients.Domain.Services.Code.Builder
 {
-    public class CustomLogsModule : Module
+    public class SampleModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -19,8 +17,8 @@ namespace Functions.Limits.Domain.Services
             builder.RegisterMetadataRegistrationSources();
 
             _ = builder
-                .RegisterType<CustomLog>()
-                .As<ICustomLog>()
+                .RegisterType<SampleService>()
+                .As<ISampleService>()
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope()
                 .PropertiesAutowired();
