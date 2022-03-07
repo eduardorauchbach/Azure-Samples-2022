@@ -10,12 +10,14 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection.AzureFunctions" Version="6.0.0.81" />
     <PackageReference Include="AzureExtensions.Swashbuckle" Version="3.3.2" />
     <PackageReference Include="AzureFunctions.Extensions.Swashbuckle" Version="1.4.4" />
+    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="2.17.0" />
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.2.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Functions.Common\Functions.Common.csproj" />
+    <ProjectReference Include="..\RauchTech.Extensions.Data.Cosmos\RauchTech.Extensions.Data.Cosmos.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

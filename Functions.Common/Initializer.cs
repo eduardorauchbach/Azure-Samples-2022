@@ -166,32 +166,6 @@ namespace Functions.Common
 
         //Todo: Do not use Repositories like this, they will be moved to each resource
 
-        //public static IServiceCollection RegisterAzureRepositories(this IServiceCollection services, string jobsConnection, string cosmosConnection)
-        //{
-        //    if (string.IsNullOrWhiteSpace(jobsConnection))
-        //    {
-        //        throw new ArgumentNullException(nameof(jobsConnection));
-        //    }
-
-        //    if (string.IsNullOrWhiteSpace(cosmosConnection))
-        //    {
-        //        throw new ArgumentNullException(nameof(cosmosConnection));
-        //    }
-
-        //    if (services is null)
-        //    {
-        //        throw new ArgumentNullException(nameof(services));
-        //    }
-
-        //    string blobConnection = Environment.GetEnvironmentVariable(jobsConnection);
-        //    string documentConnection = Environment.GetEnvironmentVariable(cosmosConnection);
-
-        //    RepositoryDomain.RegisterBlob(blobConnection, services);
-        //    RepositoryDomain.RegisterDocument(documentConnection, services);
-
-        //    return services;
-        //}
-
         //public static IServiceCollection RegisterTelemetryClient(this IServiceCollection services, string configPrefix, string roleName)
         //{
         //    if (string.IsNullOrWhiteSpace(configPrefix))

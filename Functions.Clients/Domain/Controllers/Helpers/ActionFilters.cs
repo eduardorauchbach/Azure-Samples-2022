@@ -17,13 +17,10 @@ using System.Threading.Tasks;
 
 namespace Functions.Clients.Domain.Functions.Helper
 {
-    //Somente para esse caso, pois é uma feature nova, deveria ter tag "Experimental"
-    [System.Obsolete]
     public class ActionFilters : IFunctionInvocationFilter, IFunctionExceptionFilter
     {
         #region Properties
-        //private readonly ICustomLog _logger; //Todo: evoluir biblioteca de logs para singleton mantendo o escopo de logs
-        public IHttpContextAccessor _httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         #endregion
 
         public ActionFilters(IHttpContextAccessor httpContextAccessor)

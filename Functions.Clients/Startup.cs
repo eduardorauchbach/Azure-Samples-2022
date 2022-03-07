@@ -14,6 +14,7 @@ using AzureFunctions.Extensions.Swashbuckle.Settings;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Diagnostics;
 using Functions.Clients.Domain.Functions.Helper;
+using Functions.Clients.Domain.Repositories;
 
 [assembly: CLSCompliant(true)]
 [assembly: FunctionsStartup(typeof(Functions.Limits.Startup))]
@@ -27,9 +28,9 @@ namespace Functions.Limits
         private const string Name = "Clients";
 
         private const string CosmosStorage = "CosmosStorage";
-        private const string JobsStorage = "JobsStorage";
+        private const string JobsStorage = "BlobStorage";
 
-        private const string SwaggerTitle = "Limits";
+        private const string SwaggerTitle = "Clients";
         private const string SwaggerDescription = "Swagger";
         private const string SwaggerVersion = "v1.0";
 
@@ -43,11 +44,10 @@ namespace Functions.Limits
             }
 
             _ = builder.RegisterCommons(Name)
-                       .RegisterSwagger(SwaggerTitle, SwaggerDescription, SwaggerVersion);
+                       .RegisterSwagger(SwaggerTitle, SwaggerDescription, SwaggerVersion)
+                       .RegisterAzureRepositories(JobsStorage, CosmosStorage);
 
             _ = builder.Services.AddSingleton<IFunctionFilter, ActionFilters>();
-            //.RegisterAzureRepositories(JobsStorage, CosmosStorage);
-
             _ = builder.UseAutofacServiceProviderFactory(ConfigureContainer);
         }
 
