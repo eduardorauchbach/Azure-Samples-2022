@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Data.Common;
 
-namespace RauchTech.Extensions.Data.Cosmos
+namespace RauchTech.Extensions.Data.Cosmos.Services.Builder
 {
     public static class DocumentClientBuilder
     {

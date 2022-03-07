@@ -1,15 +1,15 @@
-﻿using Functions.Clients.Domain.Repositories.Code;
+﻿using Functions.SampleCosmos.Domain.Repositories.Code;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
-using RauchTech.Extensions.Data.Cosmos;
+using RauchTech.Extensions.Data.Cosmos.Services.Builder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Functions.Clients.Domain.Repositories.Helper
+namespace Functions.SampleCosmos.Domain.Repositories.Helper
 {
     internal static class RepositoryDomain
     {

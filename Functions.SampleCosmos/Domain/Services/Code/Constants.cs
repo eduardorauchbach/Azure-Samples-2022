@@ -1,4 +1,4 @@
-﻿namespace Functions.Clients.Domain.Services.Code
+﻿namespace Functions.SampleCosmos.Domain.Services.Code
 {
     public static class Constants
     {

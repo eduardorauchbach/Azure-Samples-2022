@@ -1,5 +1,5 @@
-﻿using Functions.Clients.Domain.Models;
-using Functions.Clients.Domain.Repositories;
+﻿using Functions.SampleCosmos.Domain.Models;
+using Functions.SampleCosmos.Domain.Repositories;
 using Microsoft.Extensions.Logging;
 using RauchTech.Extensions.Logging;
 using RauchTech.Extensions.Logging.Services;
@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Functions.Clients.Domain.Services
+namespace Functions.SampleCosmos.Domain.Services
 {
     internal interface ISampleService
     {

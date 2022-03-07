@@ -15,7 +15,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Functions.Clients.Domain.Functions.Helper
+namespace Functions.SampleCosmos.Domain.Functions.Helper
 {
     public class ActionFilters : IFunctionInvocationFilter, IFunctionExceptionFilter
     {

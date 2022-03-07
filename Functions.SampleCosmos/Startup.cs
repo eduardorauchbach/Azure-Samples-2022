@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection.AzureFunctions;
-using Functions.Clients.Domain.Functions.Helper;
-using Functions.Clients.Domain.Repositories.Helper;
-using Functions.Clients.Domain.Services.Code.Builder;
+using Functions.SampleCosmos.Domain.Functions.Helper;
+using Functions.SampleCosmos.Domain.Repositories.Helper;
+using Functions.SampleCosmos.Domain.Services.Code.Builder;
 using Functions.Common;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Azure.WebJobs.Host;
@@ -10,9 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 
 [assembly: CLSCompliant(true)]
-[assembly: FunctionsStartup(typeof(Functions.Limits.Startup))]
+[assembly: FunctionsStartup(typeof(Functions.SampleCosmos.Startup))]
 
-namespace Functions.Limits
+namespace Functions.SampleCosmos
 {
     public sealed class Startup : FunctionsStartup
     {

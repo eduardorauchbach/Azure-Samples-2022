@@ -2,7 +2,7 @@
 using Autofac.Integration.Mef;
 using System;
 
-namespace Functions.Clients.Domain.Services.Code.Builder
+namespace Functions.SampleCosmos.Domain.Services.Code.Builder
 {
     public class SampleModule : Module
     {

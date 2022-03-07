@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Functions.Clients.Domain.Functions.Helper
+namespace Functions.SampleCosmos.Domain.Functions.Helper
 {
     public static class SwaggerController
     {

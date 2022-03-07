@@ -363,3 +363,9 @@ dotnet_diagnostic.CS8603.severity = none
 
 # CS0618: Type or member is obsolete
 dotnet_diagnostic.CS0618.severity = suggestion
+
+# IDE0005: Using directive is unnecessary.
+dotnet_diagnostic.IDE0005.severity = silent
+
+# CS0105: Using directive appeared previously in this namespace
+dotnet_diagnostic.CS0105.severity = suggestion

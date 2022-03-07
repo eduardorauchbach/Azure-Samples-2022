@@ -1,11 +1,11 @@
-﻿using Functions.Clients.Domain.Models;
+﻿using Functions.SampleCosmos.Domain.Models;
 using Microsoft.Azure.Documents;
-using RauchTech.Extensions.Data.Cosmos;
+using RauchTech.Extensions.Data.Cosmos.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Functions.Clients.Domain.Repositories.Sample
+namespace Functions.SampleCosmos.Domain.Repositories.Sample
 {
     public sealed class SampleRepository : BaseRepository<SampleModel>, ISampleRepository
     {
