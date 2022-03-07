@@ -2,12 +2,8 @@
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
-using RauchTech.Extensions.Data.Cosmos.Services.Builder;
+using RauchTech.Extensions.Data.Cosmos;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Functions.SampleCosmos.Domain.Repositories.Helper
 {

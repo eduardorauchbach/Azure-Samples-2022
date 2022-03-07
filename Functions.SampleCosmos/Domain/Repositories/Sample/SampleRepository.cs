@@ -1,6 +1,6 @@
 ﻿using Functions.SampleCosmos.Domain.Models;
 using Microsoft.Azure.Documents;
-using RauchTech.Extensions.Data.Cosmos.Services;
+using RauchTech.Extensions.Data.Cosmos;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
