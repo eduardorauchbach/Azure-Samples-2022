@@ -3,7 +3,7 @@ using System.Dynamic;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 
-namespace RauchTech.Extensions.Logging.Services
+namespace RauchTech.Extensions.Logging.Services.Code
 {
     public class CustomLog : CustomLogFactory, ICustomLog
     {

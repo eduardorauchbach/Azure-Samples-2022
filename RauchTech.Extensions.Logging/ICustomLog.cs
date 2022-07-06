@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using RauchTech.Extensions.Logging.Services;
+using RauchTech.Extensions.Logging.Services.Code.Builder;
 using System.Runtime.CompilerServices;
 
 namespace RauchTech.Extensions.Logging

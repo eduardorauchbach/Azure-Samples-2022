@@ -4,9 +4,9 @@ using RauchTech.Extensions.Logging;
 using RauchTech.Extensions.Logging.Services;
 using System;
 
-namespace Functions.Limits.Domain.Services
+namespace Functions.Limits.Domain.Services.Code
 {
-    public class CustomLogsModule : Module
+    public class CustomLogModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
