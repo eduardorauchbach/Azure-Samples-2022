@@ -1,10 +1,9 @@
 ﻿using Autofac;
 using Autofac.Integration.Mef;
 using RauchTech.Extensions.Logging;
-using RauchTech.Extensions.Logging.Services;
-using System;
+using RauchTech.Extensions.Logging.Services.Code;
 
-namespace Functions.Limits.Domain.Services.Code
+namespace Functions.Limits.Domain.Services.Code.Builder
 {
     public class CustomLogModule : Module
     {

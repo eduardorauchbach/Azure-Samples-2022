@@ -7,10 +7,6 @@ namespace RauchTech.Extensions.Logging.Services.Code
 {
     public class CustomLog : CustomLogFactory, ICustomLog
     {
-        public const string Begin = "Begin";
-        public const string LineMarker = "Line";
-        public const string Finish = "Finish";
-
         public CustomLog(ILoggerFactory loggerFactory) : base(loggerFactory)
         {
             ILoggerFactory = loggerFactory;
@@ -190,7 +186,7 @@ namespace RauchTech.Extensions.Logging.Services.Code
 
         private void FinishLogging(LogItem logItem)
         {
-            logItem.Message ??= CustomLog.LineMarker;
+            logItem.Message ??= CustomLogMessages.LineMarker;
 
             List<(string, object)> temp = logItem.Args.ToList();
             foreach ((string, object) item in IDs.Keys)

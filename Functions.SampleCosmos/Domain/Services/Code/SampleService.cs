@@ -2,7 +2,7 @@
 using Functions.SampleCosmos.Domain.Repositories;
 using Microsoft.Extensions.Logging;
 using RauchTech.Extensions.Logging;
-using RauchTech.Extensions.Logging.Services;
+using RauchTech.Extensions.Logging.Services.Code;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -32,11 +32,11 @@ namespace Functions.SampleCosmos.Domain.Services.Code
 
             try
             {
-                _logger.LogCustom(LogLevel.Debug, message: CustomLog.Begin);
+                _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Begin);
 
                 samples = await _sampleRepository.GetAllAsync();
 
-                _logger.LogCustom(LogLevel.Debug, message: CustomLog.Finish);
+                _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Finish);
             }
             catch
             {
@@ -52,7 +52,7 @@ namespace Functions.SampleCosmos.Domain.Services.Code
 
             try
             {
-                _logger.LogCustom(LogLevel.Debug, message: CustomLog.Begin);
+                _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Begin);
 
                 limit = await _sampleRepository.GetByIdAsync(limitID);
                 if (limit is null)
@@ -60,7 +60,7 @@ namespace Functions.SampleCosmos.Domain.Services.Code
                     throw new KeyNotFoundException(Constants.SampleNotFound + limitID);
                 }
 
-                _logger.LogCustom(LogLevel.Debug, message: CustomLog.Finish);
+                _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Finish);
             }
             catch
             {
@@ -74,7 +74,7 @@ namespace Functions.SampleCosmos.Domain.Services.Code
         {
             try
             {
-                _logger.LogCustom(LogLevel.Debug, message: CustomLog.Begin);
+                _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Begin);
 
                 sample.Id = await GenerateNewID();
 
@@ -82,7 +82,7 @@ namespace Functions.SampleCosmos.Domain.Services.Code
 
                 await _sampleRepository.AddAsync(sample);
 
-                _logger.LogCustom(LogLevel.Debug, message: CustomLog.Finish);
+                _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Finish);
             }
             catch
             {
@@ -118,7 +118,7 @@ namespace Functions.SampleCosmos.Domain.Services.Code
 
             try
             {
-                _logger.LogCustom(LogLevel.Debug, message: CustomLog.Begin);
+                _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Begin);
 
                 limitOld = await GetByIdAsync(sample.Id); //Checking existance (caso não exista, vai estourar um erro)
 
@@ -126,7 +126,7 @@ namespace Functions.SampleCosmos.Domain.Services.Code
 
                 await _sampleRepository.UpdateAsync(sample);
 
-                _logger.LogCustom(LogLevel.Debug, message: CustomLog.Finish);
+                _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Finish);
             }
             catch
             {
@@ -142,13 +142,13 @@ namespace Functions.SampleCosmos.Domain.Services.Code
 
             try
             {
-                _logger.LogCustom(LogLevel.Debug, message: CustomLog.Begin);
+                _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Begin);
 
                 limit = await GetByIdAsync(limitID);
 
                 await _sampleRepository.DeleteAsync(limit);
 
-                _logger.LogCustom(LogLevel.Debug, message: CustomLog.Finish);
+                _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Finish);
             }
             catch
             {

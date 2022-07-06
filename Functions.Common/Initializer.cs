@@ -1,23 +1,20 @@
-﻿using Autofac.Extensions.DependencyInjection.AzureFunctions;
-using Autofac;
-using Microsoft.Azure.Functions.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
-using System.Globalization;
-using Functions.Limits.Domain.Services;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection.AzureFunctions;
+using AzureFunctions.Extensions.Swashbuckle;
+using AzureFunctions.Extensions.Swashbuckle.Settings;
+using Functions.Limits.Domain.Services.Code.Builder;
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Extensibility;
-using Serilog.Core;
-using Serilog;
-using Serilog.Exceptions;
 using Microsoft.AspNetCore.Http;
-using System.Diagnostics;
-using System.Reflection;
-using AzureFunctions.Extensions.Swashbuckle;
-using Swashbuckle.AspNetCore.SwaggerGen;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi;
-using AzureFunctions.Extensions.Swashbuckle.Settings;
-using Microsoft.Azure.WebJobs.Host;
-using Functions.Common.Helpers;
+using Serilog;
+using Serilog.Core;
+using Serilog.Exceptions;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Globalization;
+using System.Reflection;
 
 namespace Functions.Common
 {
@@ -88,7 +85,7 @@ namespace Functions.Common
 
         private static IServiceCollection RegisterUtilities(this IServiceCollection services)
         {
-            _ = services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();                       
+            _ = services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             return services;
         }
@@ -159,7 +156,7 @@ namespace Functions.Common
 
         private static void LoadLogsModule(ContainerBuilder builder)
         {
-            _ = builder.RegisterModule<CustomLogsModule>();
+            _ = builder.RegisterModule<CustomLogModule>();
         }
 
         #endregion
