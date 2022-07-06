@@ -26,7 +26,7 @@ namespace Functions.SampleCosmos.Domain.Services.Code
         }
         #endregion
 
-        public async Task<ICollection<SampleModel>> GetAllsamplesAsync()
+        public async Task<ICollection<SampleModel>> GetAllAsync(string search)
         {
             ICollection<SampleModel> samples;
 
@@ -34,7 +34,14 @@ namespace Functions.SampleCosmos.Domain.Services.Code
             {
                 _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Begin);
 
-                samples = await _sampleRepository.GetAllAsync();
+                if (!string.IsNullOrWhiteSpace(search))
+                {
+                    samples = await _sampleRepository.GetAllAsync(x => x.Name.Contains(search)).ConfigureAwait(false);
+                }
+                else
+                {
+                    samples = await _sampleRepository.GetAllAsync().ConfigureAwait(false);
+                }
 
                 _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Finish);
             }
@@ -46,18 +53,18 @@ namespace Functions.SampleCosmos.Domain.Services.Code
             return samples;
         }
 
-        public async Task<SampleModel> GetByIdAsync(Guid limitID, bool loadTokens = false)
+        public async Task<SampleModel> GetByIdAsync(Guid sampleID, bool loadTokens = false)
         {
-            SampleModel limit;
+            SampleModel sample;
 
             try
             {
                 _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Begin);
 
-                limit = await _sampleRepository.GetByIdAsync(limitID);
-                if (limit is null)
+                sample = await _sampleRepository.GetByIdAsync(sampleID);
+                if (sample is null)
                 {
-                    throw new KeyNotFoundException(Constants.SampleNotFound + limitID);
+                    throw new KeyNotFoundException(Constants.SampleNotFound + sampleID);
                 }
 
                 _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Finish);
@@ -67,10 +74,10 @@ namespace Functions.SampleCosmos.Domain.Services.Code
                 throw;
             }
 
-            return limit;
+            return sample;
         }
 
-        public async Task<SampleModel> CreateLimit(SampleModel sample)
+        public async Task<SampleModel> CreateAsync(SampleModel sample)
         {
             try
             {
@@ -112,15 +119,15 @@ namespace Functions.SampleCosmos.Domain.Services.Code
             #endregion
         }
 
-        public async Task<SampleModel> UpdateLimit(SampleModel sample)
+        public async Task<SampleModel> UpdateAsync(SampleModel sample)
         {
-            SampleModel limitOld;
+            SampleModel sampleOld;
 
             try
             {
                 _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Begin);
 
-                limitOld = await GetByIdAsync(sample.Id); //Checking existance (caso não exista, vai estourar um erro)
+                sampleOld = await GetByIdAsync(sample.Id); //Checking existance (caso não exista, vai estourar um erro)
 
                 sample.LastUpdate = DateTime.Now;
 
@@ -136,17 +143,17 @@ namespace Functions.SampleCosmos.Domain.Services.Code
             return sample;
         }
 
-        public async Task DeleteLimit(Guid limitID)
+        public async Task DeleteAsync(Guid sampleID)
         {
-            SampleModel limit;
+            SampleModel sample;
 
             try
             {
                 _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Begin);
 
-                limit = await GetByIdAsync(limitID);
+                sample = await GetByIdAsync(sampleID);
 
-                await _sampleRepository.DeleteAsync(limit);
+                await _sampleRepository.DeleteAsync(sample);
 
                 _logger.LogCustom(LogLevel.Debug, message: CustomLogMessages.Finish);
             }

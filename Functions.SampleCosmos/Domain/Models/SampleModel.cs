@@ -11,7 +11,9 @@ namespace Functions.SampleCosmos.Domain.Models
 {
     public class SampleModel : EntityRoot
     {
-        [JsonPropertyName("lastUpdate")] //For Swagger usage (this version does not understand Newtonsoft yet)
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
+        public string Name { get; set; }
+
         [JsonProperty("lastUpdate", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? LastUpdate { get; set; }
     }

@@ -11,14 +11,14 @@ namespace Functions.SampleCosmos.Domain.Services
 {
     internal interface ISampleService
     {
-        Task<ICollection<SampleModel>> GetAllsamplesAsync();
+        Task<ICollection<SampleModel>> GetAllAsync(string search);
 
-        Task<SampleModel> GetByIdAsync(Guid limitID, bool loadTokens = false);
+        Task<SampleModel> GetByIdAsync(Guid sampleID, bool loadTokens = false);
 
-        Task<SampleModel> CreateLimit(SampleModel sample);
+        Task<SampleModel> CreateAsync(SampleModel sample);
 
-        Task<SampleModel> UpdateLimit(SampleModel sample);
+        Task<SampleModel> UpdateAsync(SampleModel sample);
 
-        Task DeleteLimit(Guid limitID);
+        Task DeleteAsync(Guid sampleID);
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.Azure.WebJobs.Host;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.WebJobs.Host;
+using Newtonsoft.Json;
 using System.Globalization;
 using System.Net;
 using System.Text;
@@ -7,6 +9,21 @@ namespace Functions.Common.Helpers
 {
     public static class HttpErrorHelper
     {
+        /// <summary>
+        /// Método auxiliar para montar o resultado com código http
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns>Objeto de resultado com mensagem de erro</returns>
+        public static ContentResult GetExceptionResult(this Exception e)
+        {
+            e.GetHttpErrorStatus(out HttpStatusCode statusCode);
+
+            string message = JsonConvert.SerializeObject(((e.InnerException ?? e).Message));
+            message = message.RemoveDiacritics();
+
+            return new ContentResult { StatusCode = (int)statusCode, Content = message };
+        }
+
         /// <summary>
         /// Método auxiliar para retornar erros http
         /// </summary>
@@ -21,7 +38,8 @@ namespace Functions.Common.Helpers
             {
                 statusCode = HttpStatusCode.NotFound;
             }
-            else if (ex is FunctionInvocationException && ex.InnerException == null){
+            else if (ex is FunctionInvocationException && ex.InnerException == null)
+            {
                 statusCode = HttpStatusCode.BadRequest;
             }
             else
