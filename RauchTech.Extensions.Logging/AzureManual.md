@@ -21,7 +21,7 @@ Nota: Atenção com o filtro de data
 
 Com intuito de facilitar a utilização dos logs, foi criado uma função customizada chamada CustomLogs
 
-##Como Usar
+## Como Usar
 
 A função só recebe um parametro de texto, e podem ser aplicados filtros no resultado dela.
 Este parametro remete a qualquer texto encontrado dentro da mensagem, como chaves, ids ou partes da mensagem da coluna **LogProperties_data_s**
