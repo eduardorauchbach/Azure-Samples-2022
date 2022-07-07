@@ -1,14 +1,7 @@
 ﻿using Functions.Common.Helpers;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text.Json;

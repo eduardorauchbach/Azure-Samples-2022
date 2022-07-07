@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac.Extensions.DependencyInjection.AzureFunctions" Version="6.0.0.81" />
     <PackageReference Include="AzureExtensions.Swashbuckle" Version="3.3.2" />
     <PackageReference Include="AzureFunctions.Extensions.Swashbuckle" Version="1.4.4" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.20.0" />
@@ -19,7 +18,6 @@
     <PackageReference Include="Serilog.Exceptions" Version="8.0.0" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.AzureAnalytics" Version="4.7.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>

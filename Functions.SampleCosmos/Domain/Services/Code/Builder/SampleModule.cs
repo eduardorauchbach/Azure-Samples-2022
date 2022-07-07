@@ -1,27 +1,14 @@
-﻿using Autofac;
-using Autofac.Integration.Mef;
-using System;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace Functions.SampleCosmos.Domain.Services.Code.Builder
 {
-    public class SampleModule : Module
+    public static class SampleModule
     {
-        protected override void Load(ContainerBuilder builder)
+        public static IServiceCollection AddSampleModule(this IServiceCollection services)
         {
-            if (builder is null)
-            {
-                throw new ArgumentNullException(nameof(builder));
-            }
+            services.AddScoped<ISampleService, SampleService>();
 
-            base.Load(builder);
-            builder.RegisterMetadataRegistrationSources();
-
-            _ = builder
-                .RegisterType<SampleService>()
-                .As<ISampleService>()
-                .AsImplementedInterfaces()
-                .InstancePerLifetimeScope()
-                .PropertiesAutowired();
+            return services;
         }
     }
 }

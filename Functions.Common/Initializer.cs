@@ -1,20 +1,12 @@
-﻿using Autofac;
-using Autofac.Extensions.DependencyInjection.AzureFunctions;
-using AzureFunctions.Extensions.Swashbuckle;
-using AzureFunctions.Extensions.Swashbuckle.Settings;
-using Functions.Limits.Domain.Services.Code.Builder;
+﻿using Functions.Limits.Domain.Services.Code.Builder;
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi;
 using Serilog;
 using Serilog.Core;
 using Serilog.Exceptions;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Globalization;
-using System.Reflection;
 
 namespace Functions.Common
 {
@@ -31,7 +23,7 @@ namespace Functions.Common
         private static string? _workspaceId;
         private static string? _instrumentationKey;
 
-        public static IFunctionsHostBuilder RegisterCommons(this IFunctionsHostBuilder builder, string configPrefix)
+        public static IServiceCollection RegisterCommons(this IServiceCollection services, string configPrefix)
         {
             if (string.IsNullOrWhiteSpace(configPrefix))
             {
@@ -44,41 +36,10 @@ namespace Functions.Common
             _workspaceId = GetConfiguration(LogAnalyticsWorkspaceId, configPrefix);
             _instrumentationKey = GetConfiguration(AppInsightsPropName, configPrefix);
 
-            builder.Services.RegisterUtilities();
-            //.RegisterTelemetryClient(configPrefix, _functionPrefix");
-            builder.RegisterLogs();
+            services.RegisterUtilities();
+            services.RegisterLogs();
 
-            return builder;
-        }
-
-        public static IFunctionsHostBuilder RegisterSwagger(this IFunctionsHostBuilder builder, string title, string description, string version)
-        {
-            return builder.AddSwashBuckle(Assembly.GetExecutingAssembly(), opts =>
-            {
-                opts.Title = title;
-                opts.SpecVersion = OpenApiSpecVersion.OpenApi2_0;
-                opts.AddCodeParameter = true;
-                opts.PrependOperationWithRoutePrefix = true;
-                opts.Documents = new[]
-                {
-                    new SwaggerDocument
-                    {
-                        Title = title,
-                        Description = description,
-                        Version = version
-                    }
-                };
-                opts.ConfigureSwaggerGen = (x =>
-                {
-                    x.OrderActionsBy((o) => { return o.GroupName + o.RelativePath; });
-                    x.CustomOperationIds(apiDesc =>
-                    {
-                        return apiDesc.TryGetMethodInfo(out MethodInfo methodInfo)
-                            ? methodInfo.Name
-                            : new Guid().ToString();
-                    });
-                });
-            });
+            return services;
         }
 
         #region Utilities
@@ -94,18 +55,17 @@ namespace Functions.Common
 
         #region Logging
 
-        private static IFunctionsHostBuilder RegisterLogs(this IFunctionsHostBuilder builder)
+        private static IServiceCollection RegisterLogs(this IServiceCollection services)
         {
             if (_instrumentationKey != null && _workspaceId != null && _authId != null)
             {
-                builder.Services
-                        .ConfigureApplicationInsights()
+                services.ConfigureApplicationInsights()
                         .ConfigureSerilog();
 
-                _ = builder.UseAutofacServiceProviderFactory(LoadLogsModule);
+                _ = services.AddCustomLogModule();
             }
 
-            return builder;
+            return services;
         }
 
         private static IServiceCollection ConfigureApplicationInsights(this IServiceCollection services)
@@ -154,50 +114,7 @@ namespace Functions.Common
             });
         }
 
-        private static void LoadLogsModule(ContainerBuilder builder)
-        {
-            _ = builder.RegisterModule<CustomLogModule>();
-        }
-
         #endregion
-
-        //Todo: Do not use Repositories like this, they will be moved to each resource
-
-        //public static IServiceCollection RegisterTelemetryClient(this IServiceCollection services, string configPrefix, string roleName)
-        //{
-        //    if (string.IsNullOrWhiteSpace(configPrefix))
-        //    {
-        //        throw new ArgumentNullException(nameof(configPrefix));
-        //    }
-
-        //    if (string.IsNullOrWhiteSpace(roleName))
-        //    {
-        //        throw new ArgumentNullException(nameof(roleName));
-        //    }
-
-        //    if (services is null)
-        //    {
-        //        throw new ArgumentNullException(nameof(services));
-        //    }
-
-        //    string instrumentationKey = Environment.GetEnvironmentVariable(configPrefix);
-
-        //    if (!string.IsNullOrEmpty(instrumentationKey))
-        //    {
-        //        _ = services.AddScoped(_ =>
-        //        {
-        //            TelemetryClient client = new TelemetryClient(TelemetryConfiguration.CreateDefault())
-        //            {
-        //                InstrumentationKey = instrumentationKey
-        //            };
-
-        //            client.Context.Cloud.RoleName = roleName;
-        //            return client;
-        //        });
-        //    }
-
-        //    return services;
-        //}
 
         private static string? GetConfiguration(string propName, string prefix)
         {

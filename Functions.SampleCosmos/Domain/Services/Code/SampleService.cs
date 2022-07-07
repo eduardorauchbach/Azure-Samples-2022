@@ -2,7 +2,6 @@
 using Functions.SampleCosmos.Domain.Repositories;
 using Microsoft.Extensions.Logging;
 using RauchTech.Extensions.Logging;
-using RauchTech.Extensions.Logging.Services.Code;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RauchTech.Extensions.Logging
+﻿namespace RauchTech.Extensions.Logging
 {
     public static class CustomLogMessages
     {

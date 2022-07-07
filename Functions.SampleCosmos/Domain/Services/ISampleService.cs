@@ -1,8 +1,4 @@
 ﻿using Functions.SampleCosmos.Domain.Models;
-using Functions.SampleCosmos.Domain.Repositories;
-using Microsoft.Extensions.Logging;
-using RauchTech.Extensions.Logging;
-using RauchTech.Extensions.Logging.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

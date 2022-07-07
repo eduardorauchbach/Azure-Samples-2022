@@ -1,28 +1,16 @@
-﻿using Autofac;
-using Autofac.Integration.Mef;
+﻿using Microsoft.Extensions.DependencyInjection;
 using RauchTech.Extensions.Logging;
 using RauchTech.Extensions.Logging.Services.Code;
 
 namespace Functions.Limits.Domain.Services.Code.Builder
 {
-    public class CustomLogModule : Module
+    public static class CustomLogModule
     {
-        protected override void Load(ContainerBuilder builder)
+        public static IServiceCollection AddCustomLogModule(this IServiceCollection services)
         {
-            if (builder is null)
-            {
-                throw new ArgumentNullException(nameof(builder));
-            }
+            services.AddScoped<ICustomLog, CustomLog>();
 
-            base.Load(builder);
-            builder.RegisterMetadataRegistrationSources();
-
-            _ = builder
-                .RegisterType<CustomLog>()
-                .As<ICustomLog>()
-                .AsImplementedInterfaces()
-                .InstancePerLifetimeScope()
-                .PropertiesAutowired();
+            return services;
         }
     }
 }

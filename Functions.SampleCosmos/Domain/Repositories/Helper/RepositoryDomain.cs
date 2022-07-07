@@ -1,6 +1,5 @@
 ﻿using Functions.SampleCosmos.Domain.Repositories.Code;
 using Microsoft.Azure.Documents;
-using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using RauchTech.Extensions.Data.Cosmos;
 using System;
@@ -17,7 +16,7 @@ namespace Functions.SampleCosmos.Domain.Repositories.Helper
                    .AddScoped<ISampleRepository, SampleRepository>();
         }
 
-        public static IFunctionsHostBuilder RegisterAzureRepositories(this IFunctionsHostBuilder builder, string jobsConnection, string cosmosConnection)
+        public static IServiceCollection RegisterAzureRepositories(this IServiceCollection services, string jobsConnection, string cosmosConnection)
         {
             //if (string.IsNullOrWhiteSpace(jobsConnection))
             //{
@@ -29,18 +28,18 @@ namespace Functions.SampleCosmos.Domain.Repositories.Helper
                 throw new ArgumentNullException(nameof(cosmosConnection));
             }
 
-            if (builder is null)
+            if (services is null)
             {
-                throw new ArgumentNullException(nameof(builder));
+                throw new ArgumentNullException(nameof(services));
             }
 
             //string blobConnection = Environment.GetEnvironmentVariable(jobsConnection);
             string documentConnection = Environment.GetEnvironmentVariable(cosmosConnection);
 
             //RepositoryDomain.RegisterBlob(blobConnection, services);
-            RegisterDocument(documentConnection, builder.Services);
+            RegisterDocument(documentConnection, services);
 
-            return builder;
+            return services;
         }
     }
 }

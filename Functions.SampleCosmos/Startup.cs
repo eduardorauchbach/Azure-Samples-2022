@@ -1,9 +1,7 @@
-﻿using Autofac;
-using Autofac.Extensions.DependencyInjection.AzureFunctions;
+﻿using Functions.Common;
 using Functions.SampleCosmos.Domain.Functions.Helper;
 using Functions.SampleCosmos.Domain.Repositories.Helper;
 using Functions.SampleCosmos.Domain.Services.Code.Builder;
-using Functions.Common;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,14 +16,10 @@ namespace Functions.SampleCosmos
     {
         #region Constants
 
-        private const string Name = "Clients";
+        private const string Name = "Sample";
 
         private const string CosmosStorage = "CosmosStorage";
         private const string JobsStorage = "BlobStorage";
-
-        private const string SwaggerTitle = "Clients";
-        private const string SwaggerDescription = "Swagger";
-        private const string SwaggerVersion = "v1.0";
 
         #endregion
 
@@ -36,22 +30,11 @@ namespace Functions.SampleCosmos
                 throw new ArgumentNullException(nameof(builder));
             }
 
-            _ = builder.RegisterCommons(Name)
-                       .RegisterSwagger(SwaggerTitle, SwaggerDescription, SwaggerVersion)
-                       .RegisterAzureRepositories(JobsStorage, CosmosStorage);
+            _ = builder.Services.RegisterCommons(Name)
+                                .AddSingleton<IFunctionFilter, ActionFilters>()
+                                .RegisterAzureRepositories(JobsStorage, CosmosStorage)
 
-            _ = builder.Services.AddSingleton<IFunctionFilter, ActionFilters>();
-            _ = builder.UseAutofacServiceProviderFactory(ConfigureContainer);
-        }
-
-        private static void ConfigureContainer(ContainerBuilder builder)
-        {
-            _ = builder.RegisterModule<SampleModule>();
-
-            _ = builder.RegisterAssemblyTypes(typeof(Startup).Assembly)
-                       .InNamespace($"Functions{Name}")
-                       .AsSelf()
-                       .InstancePerTriggerRequest();
+                                .AddSampleModule();
         }
     }
 }
